@@ -3,7 +3,7 @@ exports.handler = async function(event, context) {
     const params = JSON.parse(body || null);
 
     if(httpMethod != 'PUT' || !params || !params.id || !params.vote || isNaN(params.vote)) {
-        return { statusCode: 400, body: JSON.stringify({ error: 'Invalid parameters' }), };
+        return { statusCode: 400, body: JSON.stringify({ error: 'Invalid parameters!' }), };
     }
 
     const sumKey = `rev-sum-${params.id}`;
