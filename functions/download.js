@@ -1,8 +1,9 @@
 exports.handler = async function(event, context) {
-    const { queryStringParameters: params, httpMethod } = event;
+    const { body, httpMethod } = event;
+    const params = JSON.parse(body || null);
 
-    if(httpMethod != 'PUT' || !params.id) {
-        return { statusCode: 400, body: JSON.stringify({ error: 'Not valid parameters' }), };
+    if(httpMethod != 'PUT' || !params || !params.id) {
+        return { statusCode: 400, body: JSON.stringify({ error: 'Not valid parameters'}), };
     }
 
     const downloadKey = `download-${params.id}`;
